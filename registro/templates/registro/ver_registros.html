@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ver Registros</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <video muted autoplay loop id="background-video">
+        <source src="{% static 'video/fondo.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="container">
+    <h1>Registros</h1>
+        <ul>
+            {% for registro in registros %}
+            <li>Vehículo: {{ registro.vehiculo.matricula }} - Entrada: {{ registro.fecha_hora_entrada }} - Salida: {{ registro.fecha_hora_salida }}</li>
+            {% empty %}
+            <li>No hay registros disponibles.</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'registro:registrar_propietario' %}">Registrar Nuevo Propietario</a>
+        <a href="{% url 'registro:registrar_vehiculo' %}">Registrar Vehículo</a>
+        <a href="{% url 'registro:registrar_registro' %}">Registrar Registro</a>
+    </div>
+</body>
+</html>
